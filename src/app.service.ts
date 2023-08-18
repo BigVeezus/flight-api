@@ -1,15 +1,24 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { ConfigService } from '@nestjs/config';
 
+let FLIGHT_RAPID_URL: string;
+let FLIGHT_API_KEY: string;
+let FLIGHT_API_HOST: string;
 @Injectable()
 export class AppService {
+  constructor(private configService: ConfigService) {
+    FLIGHT_RAPID_URL = this.configService.get<string>('FLIGHT_RAPID_URL');
+    FLIGHT_API_KEY = this.configService.get<string>('FLIGHT_API_KEY');
+    FLIGHT_API_HOST = this.configService.get<string>('FLIGHT_API_HOST');
+  }
   async getAircrafts() {
     const options = {
       method: 'GET',
-      url: 'https://flight-radar1.p.rapidapi.com/aircrafts/list',
+      url: `${FLIGHT_RAPID_URL}/aircrafts/list`,
       headers: {
-        'X-RapidAPI-Key': '158dae292amsh0191827cf1dd90ep1e608fjsn996b58900bfc',
-        'X-RapidAPI-Host': 'flight-radar1.p.rapidapi.com',
+        'X-RapidAPI-Key': FLIGHT_API_KEY,
+        'X-RapidAPI-Host': FLIGHT_API_HOST,
       },
     };
 
@@ -25,14 +34,14 @@ export class AppService {
     console.log(query);
     const options = {
       method: 'GET',
-      url: 'https://flight-radar1.p.rapidapi.com/flights/search',
+      url: `${FLIGHT_RAPID_URL}/flights/search`,
       params: {
         query: `${query}`,
         limit: '25',
       },
       headers: {
-        'X-RapidAPI-Key': '158dae292amsh0191827cf1dd90ep1e608fjsn996b58900bfc',
-        'X-RapidAPI-Host': 'flight-radar1.p.rapidapi.com',
+        'X-RapidAPI-Key': FLIGHT_API_KEY,
+        'X-RapidAPI-Host': FLIGHT_API_HOST,
       },
     };
 

@@ -10,7 +10,7 @@ export class AppController {
     return await this.appService.getAircrafts();
   }
 
-  @Get('flight')
+  @Get('flights')
   async getFlights(@Query('ID') query: any) {
     return await this.appService.getFlights({ query });
   }
