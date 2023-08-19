@@ -11,6 +11,7 @@ import {
 } from 'class-validator';
 import { FetchByMoreInfoEnum } from 'src/Enums/Enum';
 
+// Class for getFlightByBoundary
 export class FlightBoundaryDto {
   @IsNotEmpty()
   @IsNumber()
@@ -89,6 +90,7 @@ export class FlightSearchDTO {
   readonly limit: number;
 }
 
+// Class DTO for get flight by Airline
 export class FlightByAirlineDTO {
   @IsNotEmpty()
   @IsString()
@@ -97,6 +99,7 @@ export class FlightByAirlineDTO {
   readonly airline: string;
 }
 
+// Class DTO for more flights info
 export class FlightsMoreInfoDTO {
   @IsNotEmpty()
   @IsString()
@@ -118,6 +121,7 @@ export class FlightsMoreInfoDTO {
   readonly limit: number;
 }
 
+// Flight DTO for Time
 export class FlightTimeDTO {
   @IsNotEmpty()
   @IsString()

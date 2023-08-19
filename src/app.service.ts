@@ -12,6 +12,7 @@ let FLIGHT_API_HOST: string;
 @Injectable()
 export class AppService {
   constructor(private configService: ConfigService) {
+    //Importing variables from the env file
     FLIGHT_RAPID_URL = this.configService.get<string>('FLIGHT_RAPID_URL');
     FLIGHT_API_KEY = this.configService.get<string>('FLIGHT_API_KEY');
     FLIGHT_API_HOST = this.configService.get<string>('FLIGHT_API_HOST');
